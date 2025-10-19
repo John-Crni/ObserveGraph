@@ -137,7 +137,7 @@ export async function uploadImages() {
   formData.append('DAY_NUM' , imageIndex);
 
   // 実際のエンドポイントに書き換えてください
-  ServerResponse =  await fetch("http://192.168.86.253:5000/upload", {
+  ServerResponse =  await fetch("https://observegraph-1.onrender.com/upload", {
     method: "POST",
     body: formData
   })
