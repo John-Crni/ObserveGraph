@@ -1,11 +1,7 @@
 services:
   - type: web
-    name: image-gray-converter
+    name: my-flask-app
     env: python
-    plan: free
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
-    autoDeploy: true
-    envVars:
-      - key: FLASK_ENV
-        value: production
+    pythonVersion: 3.11.9
+    buildCommand: "pip install --upgrade pip && pip install -r requirements.txt"
+    startCommand: "gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --threads 8 --timeout 120"
