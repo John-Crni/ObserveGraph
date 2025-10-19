@@ -1,6 +1,11 @@
 services:
   - type: web
-    name: my-flask-app
+    name: image-gray-converter
     env: python
-    buildCommand: ""
-    startCommand: "python app.py"
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    autoDeploy: true
+    envVars:
+      - key: FLASK_ENV
+        value: production
