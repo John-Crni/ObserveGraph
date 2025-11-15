@@ -164,7 +164,6 @@ class createSerialImage:
     
     _fntlfList = []
 
-
     def __init__(self,reqData,nlSA):
         SPECIFIED_TABLENUMBERS.clear()
         SPECIFIED_TABLENUMBER.clear()
@@ -207,24 +206,24 @@ class createSerialImage:
         if tablenum in tablenumbers:
             idx = tablenumbers.index(tablenum) + 1
             splitArea = idx % spasize
-            appearArea = int(idx / spasize) + 1
+            appearArea = int(idx / spasize)
             for i in range(1,len(SPECIFIED_TABLENUMBERS)+1):
-                if i != idx and (i % spasize) == splitArea and (int(i / spasize)) == appearArea:
+                if i != idx and (i % spasize) == splitArea and (int(i / spasize)) != appearArea:
                     SPECIFIED_TABLENUMBERS[i-1] = False
                     if SPECIFIED_TABLENUMBER[i-1] is not None and i <= len(SPECIFIED_TABLENUMBER):
                         if i == len(SPECIFIED_TABLENUMBER):
                             tmp = SPECIFIED_TABLENUMBER[i-1]
                             SPECIFIED_TABLENUMBER.append(tmp)
+                            SPECIFIED_TABLENUMBER[i-1] = None
                         else:
-                            SPECIFIED_TABLENUMBER[i] = SPECIFIED_TABLENUMBER[i-1]
-                        SPECIFIED_TABLENUMBER[i-1] = None
-                        
+                            for j in range(len(SPECIFIED_TABLENUMBERS)-1,i-1,-1):
+                                tmp = SPECIFIED_TABLENUMBER[j]
+                                SPECIFIED_TABLENUMBER[j] = SPECIFIED_TABLENUMBER[j-1]
+                                SPECIFIED_TABLENUMBER[j-1] = tmp                
 
     def cserialImage(self):
         nLenSAA = len(self._fSnipptedImages)
         merged = []
-        mergedSNA = []
-        mergedTBN = []
         counter = 0
         for i in range(len(self._fSnipptedImages)):
             if counter >= nLenSAA:
