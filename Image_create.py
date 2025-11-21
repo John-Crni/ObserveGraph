@@ -43,6 +43,8 @@ class SniptedImageInfo:
     
     nGroup = 0
     
+    bfukkingerror = False
+    
     def __init__(self,imgName,serialNum,lstmd,imgblob,snippingAreanum,imgnum):
         self.nImgNum = int(imgnum)
         self.nSnippingAreaNum = snippingAreanum
@@ -54,9 +56,15 @@ class SniptedImageInfo:
         self.fSnippedImage = imgblob
         self.nSerialNum = int(serialNum)
         self.fSnippedImage = self._fSnipedend(self.fSnippedImage)
+        if self.fSnippedImage is None:
+            self.isEnable = False
+        
         if self.isEnable:
-            self.nLedgeX,self.nLedgeY = self._find_most_endpoint(IMG = self.fSnippedImage , direct= 0)
-            self.nRedgeX,self.nRedgeY = self._find_most_endpoint(IMG = self.fSnippedImage , direct= 1)
+            Lbuffer = self._find_most_endpoint(IMG = self.fSnippedImage , direct= 0)
+            rbuffer = self._find_most_endpoint(IMG = self.fSnippedImage , direct= 1)
+            if Lbuffer is not None or rbuffer is not None:
+                self.nLedgeX,self.nLedgeY = self._find_most_endpoint(IMG = self.fSnippedImage , direct= 0)
+                self.nRedgeX,self.nRedgeY = self._find_most_endpoint(IMG = self.fSnippedImage , direct= 1)
     
     def _fSnipedend(self,img):
         print("[SniptedImageInfo][_fSnipedend]",(img == None))
