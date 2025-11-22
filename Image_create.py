@@ -63,8 +63,10 @@ class SniptedImageInfo:
             Lbuffer = self._find_most_endpoint(IMG = self.fSnippedImage , direct= 0)
             rbuffer = self._find_most_endpoint(IMG = self.fSnippedImage , direct= 1)
             if Lbuffer is not None or rbuffer is not None:
-                self.nLedgeX,self.nLedgeY = self._find_most_endpoint(IMG = self.fSnippedImage , direct= 0)
-                self.nRedgeX,self.nRedgeY = self._find_most_endpoint(IMG = self.fSnippedImage , direct= 1)
+                self.nLedgeX = Lbuffer[0]
+                self.nLedgeY = Lbuffer[1]
+                self.nRedgeX = rbuffer[0]
+                self.nRedgeY = rbuffer[1]
     
     def _fSnipedend(self,img):
         print("[SniptedImageInfo][_fSnipedend]",(img == None))
