@@ -1,3 +1,8 @@
+body {
+    background-color: #0d1117;
+    color: transparent;       /* 文字色を透明に変更 */
+    -webkit-text-stroke: 1px #46e8f0;
+}
 .del{
     position: absolute;
     top: -0.1em;
@@ -6,26 +11,26 @@
 }
 
 h1 {
-  background: linear-gradient(45deg, #B67B03 0%, #DAAF08 45%, #FEE9A0 70%, #DAAF08 85%, #B67B03 90% 100%);
+  /* background: linear-gradient(45deg, #B67B03 0%, #DAAF08 45%, #FEE9A0 70%, #DAAF08 85%, #B67B03 90% 100%); */ 
+  background-color: transparent;
   font-weight: bold;
-  font-size: 4vb;
   /* -webkit-text-stroke-width: 1px; */
   /* -webkit-text-stroke-color:  linear-gradient(to right,#e60000,#f39800,#fff100,#009944,#0068b7,#1d2088,#920783,#e60000) 0 / 200%; */
   position: fixed;
-  top: 0;
-  left: -50vw;
-  width: 200%;
-  height: 6vb;
-
   /* background: rgba(252, 73, 3, 0.5); */
   z-index: 100;
-  display:block;
   justify-content: center; 
   text-align: center;
-  color: #FFF;       /* 文字色を白に変更 */
-  animation: flash 1s infinite; /* アニメーションflashを1秒ごとに繰り返す */
+
+  /* animation: flash 1s infinite; アニメーションflashを1秒ごとに繰り返す */
 
 }
+
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 1px #46e8f0;
+}
+
 
 @keyframes flash {
   0%, 100% {
@@ -46,19 +51,142 @@ h1 {
 display: flex;
 }
 
-
-header {
+/* --- .menu-background --- */
+.menu-background {
   position: fixed;
   top: 0;
   left: 0;
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  background-color: rgba(241, 0, 0, 0.5);
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.menu-background.open {
   width: 100%;
-  background: rgba(0, 0, 0, .1);
-  display: flex;
+  height: 100%;
+  opacity: 1;
+}
+/*---------- #menu ----------*/
+#menu {
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  background-color: #191970;
+  position: fixed;
+  top: 10vb;
+  right: 0;
+  z-index: 10;
+  transform: translate(500px);
+  transition: all .5s;
+}
+#menu.open {
+  transform: translate(0);
+}
+#menu ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+#menu li {
+  padding: 10px;
+  color: #fff;
+  border-bottom: 1px solid #fff;
+}
+#menu_btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 6px 20px;
+  background-color: #191970;
+  cursor: pointer;
+}
+
+header {
+  top: 0;
+  left: 0;
+  width: 100%;
   text-align: center;
+  align-items: flex-start;
+}
+
+.header-title {
+  font-size: 3.5vb;
+  position: relative;
+  width: 100%;
+  top: -1vh;
+  height: 5vh;
+  margin: 0 auto;
+  text-align: center;
+  border: solid 2px #46e8f0;
+  color: #46e8f0;
+}
+
+.header-toggle {
+  position: relative;
+  width: 100%;
+  height: 2vh;
+  left: 5vw;
+  margin: 1 auto;
+  text-align: center;
+  display: flex;
+}
+
+.header-btm {
+  position: relative;
+  left: 2vw;
+  width: 100%;
+  text-align: center;
+  display: flex;
+}
+
+.header-tablebtm {
+  position: relative;
+  left: -3.1rem;
+  width: 100%;
+  top: -1.7rem;
+  text-align: center;
+  display: flex;
+}
+
+.header-tablenum {
+  position: relative;
+  left: 0.5rem;
+  width: 100%;
+  height: 6rem;
+  top: -1.5rem;
+  text-align: center;
+  display: flex;
+}
+
+.header-contents {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  border: solid 2px #46e8f0;
+  display: inline-block;
+}
+
+#menu_btn {
+  position: absolute;
+  top: -5vb;
+  right: -1vb;
+  color: #74de28; 
+  padding: 1px;
+  background-color: #eeff00;
+  cursor: pointer;
+  width: 10vb;
+  height: 4vb;
+  font-size: 3vb;
 }
 
 .baseCanvas { 
-  position: relative;
+  position: absolute;
   border: 1px solid #000;
   left: 0px;   
   top: 10vb;
@@ -101,32 +229,89 @@ td:last-child {
 }
 
 button{
-  display: block;
-  background: #aacf53; /* 緑色 */
-  color: #fff;
-  border: solid 4px #aacf53; /* 緑色 */
+  border: solid 2px #46e8f0; /* 緑色 */
   font-size: 4vb;
   border-radius: 5px;
-  width: 40vb;
-  height: 7vb;
+  margin: 2vw;
   text-align: center;
-  margin-top: 10vb;
-  /* left: 50vw;
-  margin-left: auto; */
+  background: transparent; /* 緑色 */
+}
+
+.inputTableNum{
+  background-color: transparent;
+  border: solid 2px #46e8f0; /* 緑色 */
+  width: 40rem;
+  height: 4rem;
+  font-size: 1.5vb;
+  top: -6rem;
 }
 
 .selectbtn{
-  display: block;
-  background: #aacf53; /* 緑色 */
-  color: #fff;
-  border: solid 4px #aacf53; /* 緑色 */
-  font-size: 4vb;
-  border-radius: 5px;
-  width: 40vb;
-  height: 7vb;
-  text-align: center;
-  margin-top: 10vb;
-  left: 50vw;
+  width: 15vw;
+  height: 14vw;
+  background-image: url("../btm_img/folder.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+.selectSaveDatabtn{
+  width: 15vw;
+  height: 14vw;
+  background-image: url("../btm_img/indev.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+.cancelbtn{
+  width: 15vw;
+  height: 14vw;
+  background-image: url("../btm_img/enter.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+.snipbtn{
+  width: 15vw;
+  height: 14vw;
+  background-image: url("../btm_img/snip.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+
+.creategraphbtn{
+  width: 15vw;
+  height: 14vw;
+  background-image: url("../btm_img/graph.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+
+
+
+.tablenumbtm{
+  top: 2rem;
+  width: 20rem;
+  height: 1rem;
+  font-size: 2rem;
+  border-color: transparent;
+}
+
+.enterbtn{
+  position: relative;
+  top: 1.3rem;
+  width: 10rem;
+  height: 4rem;
+  background-image: url("../btm_img/enter.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
 }
 
 
@@ -138,34 +323,67 @@ button{
 }
 
 button:hover{
-  background: #82ae46; /* 少し濃い緑色 */
-  border: solid 4px #46700a; /* 少し濃い緑色 */
-}
-
-button:active{
-  background: #46700a; /* 濃い緑色 */
+  filter: brightness(70%);
 }
 
 button:disabled{
   background: #1a2b03; /* 濃い緑色 */
   border: solid 4px #1a2b03; /* 少し濃い緑色 */
+  filter: brightness(60%);
 }
 
 button.selecting:hover {
-  background: #1a2b03; /* 濃い緑色 */
-  border: solid 4px #1a2b03; /* 少し濃い緑色 */
+  /* background: #1a2b03; 
+  border: solid 4px #1a2b03; 少し濃い緑色 */
 }
 
 button.selecting:active {
-  background: #1a2b03; /* 濃い緑色 */
-  border: solid 4px #1a2b03; /* 少し濃い緑色 */
+  /* background: #1a2b03; 
+  border: solid 4px #1a2b03; */
 }
 
 button.selecting {
-  background: #1a2b03; /* 濃い緑色 */
-  border: solid 4px #1a2b03; /* 少し濃い緑色 */
 }
 
 #fileInput {
     display: none;
+}
+
+.toggle {
+    display: inline-block;
+    position: relative;
+    width: 20vw;
+    height: 2vh;
+    left: 5.3vw;
+    top: 0.5vh;
+}
+
+.toggle input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    inset: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.slider::before {
+    content: "";
+
+    position: absolute;
+    top: 4px;
+    left: 4px;
+
+    width: 50%;
+    height: 80%;
+    background: #46e8f0;
+
+    transition: transform 0.1s ease;
+}
+
+/* OFF状態 */
+input:checked + .slider::before {
+    transform: translateX(100%);
 }

@@ -21,19 +21,11 @@ os.makedirs("TEST", exist_ok=True)
 
 @app.route('/')
 def index():
-    return render_template('editor.html')
-
-@app.route('/crop')
-def crop_page():
     return render_template('crop.html')
 
 @app.route('/send')
 def send_page():
     return render_template('send.html')
-
-@app.route('/input')
-def input_page():
-    return render_template('input.html')
 
 @app.route("/upload", methods=["POST"])
 def upload():

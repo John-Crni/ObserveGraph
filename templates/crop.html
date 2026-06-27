@@ -6,22 +6,58 @@
   <link rel="stylesheet" href="/static/css/crop.css">
 </head>
 <body>
-  <h1>切抜範囲設定画面</h1>
+  <h1 id = "H1">
+    <div class="header-title">
+      切抜範囲設定画面
+    </div>
+    <div class="header-contents">
+      <div class="header-toggle">
+        <label class="toggle">
+            <input type="checkbox" id="power">
+            <span class="slider"></span>
+        </label>
+      </div><!-- /.header-contents1 -->
+      <div class="header-btm">
+        <input type="file" id="fileInput" accept="image/*" class = "selectbtn4Input" class="test">
+        <button id="areasetting" class = "selectbtn" ></button>
+        <button id="areasetting2" class = "selectSaveDatabtn" ></button>
+        <button id="rangeBtn" onclick="toggleRange()" class = "snipbtn"></button>
+        <button id="cancelBtn" onclick="resisterSnippingArea()" class = "cancelbtn"></button>
+        <button onclick="finish()" class = "creategraphbtn"></button>
+      </div><!-- /.header-btm -->
+      <div class="header-tablebtm" >
+        <button id="table_num" class = "tablenumbtm" onclick="tablenumbtn()">+台番号入力</button>
+      </div><!-- /.header-btm -->
+      <div class="header-tablenum" id = "specifyTn">
+        <input type="text" id="inputTableNum" placeholder="台番号(個別)を入力 (区切り文字: , . 、 空白)" class = "inputTableNum">
+        <button id="enter" class = "enterbtn" onclick="resisterTableNum()"></button> 
+      </div><!-- /.header-enter -->
+      <div class="header-tablenum" id = "Tn">
+        <input type="text" id="inputTableNum2" placeholder="台番号(全台)を入力 (区切り文字: , . 、 空白)" class = "inputTableNum">
+        <button id="enter" class = "enterbtn" onclick="saveAllTableNumData()"></button> 
+      </div><!-- /.header-enter -->
+
+    </div><!-- /.header-contents -->
+  </h1>
+  <div id="menu">
+    <ul>
+      <li>メニュー1</li>
+      <li>メニュー2</li>
+      <li>メニュー3</li>
+      <li>メニュー4</li>
+      <li>メニュー5</li>
+    </ul>
+  </div>
+  <div class="menu-background"></div>
   <div class="baseCanvas" id="canvasbase">
     <canvas id="baseCanvas"></canvas>
         <div class="overlayCanvas" id="canvaschild">
             <canvas id="overlayCanvas"></canvas>
-          <input type="text" id="inputTableNum" placeholder="台番号を入力 (区切り文字: , . 、 空白)" class = "inputTableNum">
-          </div>
-          <div class="vertical-group">
-            <input type="file" id="fileInput" accept="image/*" class = "selectbtn4Input" class="test">
-            <button id="areasetting" class = "selectbtn">範囲設定画像選択</button>
-            <button id="rangeBtn" onclick="toggleRange()" class = "selectbtn">範囲設定</button>
-            <button id="cancelBtn" onclick="cancel()" class = "selectbtn">キャンセル</button>
-            <button onclick="finish()" class = "selectbtn">終了</button>
-          </div> 
+        </div>
   </div>  
   <br>
+  <script src="http://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
   <script src="/static/js/crop.js"></script>
+  <script src="/static/js/menubar.js"></script>
 </body>
 </html>
